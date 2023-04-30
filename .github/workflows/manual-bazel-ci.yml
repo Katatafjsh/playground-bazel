@@ -13,7 +13,13 @@ jobs:
 
     - name: Set Bazelisk version
       run: |
-        echo "BAZELISK_VERSION=v1.1.0" >> $GITHUB_ENV
+        echo "BAZELISK_VERSION=v1.1.0" >> ${GITHUB_ENV}
+        echo "ARCH=${{runner.arch,,}}" >> ${GITHUB_ENV}
+
+    - name: Debug
+      run: |
+        echo "BAZELISK_VERSION: ${BAZELISK_VERSION}"
+        echo "ARCH: ${ARCH}"
 
     - uses: actions/checkout@v2
 
@@ -25,9 +31,9 @@ jobs:
 
     - name: Install bazelisk
       run: |
-        curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/${BAZELISK_VERSION}/bazelisk-linux-${{ runner.arch }}"
+        curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/${BAZELISK_VERSION}/bazelisk-linux-${ARCH}"
         mkdir -p "${GITHUB_WORKSPACE}/bin/"
-        mv "bazelisk-linux-${{ runner.arch }}" "${GITHUB_WORKSPACE}/bin/bazel"
+        mv "bazelisk-linux-${ARCH}" "${GITHUB_WORKSPACE}/bin/bazel"
         chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
 
     - name: Test
