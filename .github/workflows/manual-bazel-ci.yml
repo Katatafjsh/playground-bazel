@@ -30,7 +30,7 @@ jobs:
         mkdir -p "${GITHUB_WORKSPACE}/bin/"
         mv "bazelisk-linux-${ARCH}" "${GITHUB_WORKSPACE}/bin/bazel"
         chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
-        ls -alh ${GITHUB_WORKSPACE}/bin/bazel
+        ${GITHUB_WORKSPACE}/bin/bazel --help
     - name: Test
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test //...
