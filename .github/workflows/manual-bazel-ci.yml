@@ -13,7 +13,7 @@ jobs:
 
     - name: Set Bazelisk version
       run: |
-        echo "BAZELISK=v1.1.0" >> ${GITHUB_ENV}
+        echo "BAZELISK=v1.16.0" >> ${GITHUB_ENV}
         echo "ARCH=$(echo ${{ runner.arch }} | tr '[:upper:]' '[:lower:]')" >> ${GITHUB_ENV}
 
     - uses: actions/checkout@v2
